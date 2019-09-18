@@ -6,10 +6,12 @@ group = "com.fayelee.algs"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
+    compile("edu.princeton.cs", "algs", "1.0.4")
+
     testCompile("junit", "junit", "4.12")
 }
 
