@@ -32,4 +32,11 @@ public class TestGraphs {
             assertThat(Graphs.degree(empty, v), is(0));
         }
     }
+
+    @Test
+    public void degreeWithMedium() {
+        for (int v = 0; v < medium.V(); v++) {
+            assertThat(Graphs.degree(medium, v), is(TestData.medium.get(v).size()));
+        }
+    }
 }

@@ -9,49 +9,63 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.core.Is.is;
 
 public class TestGraph {
-    private static final int EMPTY_VERTEX_NUMBER = 8;
-
     private Graph empty;
-    private Graph graph;
+    private Graph tiny;
+    private Graph medium;
 
     @Before
     public void setup() {
-        empty = new Graph(EMPTY_VERTEX_NUMBER);
-        graph = new Graph(new In(
-                this.getClass().getResource("/tinyG.txt")));
+        empty = new Graph(TestData.EMPTY_VERTEX_NUMBER);
+
+        tiny = new Graph(new In(
+                this.getClass().getResource("/tinyG.txt")
+        ));
+
+        medium = new Graph(new In(
+                this.getClass().getResource("/mediumG.txt")
+        ));
     }
 
     @Test
     public void V() {
-        assertThat(empty.V(), is(EMPTY_VERTEX_NUMBER));
-        assertThat(graph.V(), is(13));
+        assertThat(empty.V(), is(TestData.EMPTY_VERTEX_NUMBER));
+        assertThat(tiny.V(), is(13));
     }
 
     @Test
     public void E() {
         assertThat(empty.E(), is(0));
-        assertThat(graph.E(), is(13));
+        assertThat(tiny.E(), is(13));
     }
 
     @Test
     public void addEdge() {
-        assertThat(empty.V(), is(EMPTY_VERTEX_NUMBER));
+        assertThat(empty.V(), is(TestData.EMPTY_VERTEX_NUMBER));
         assertThat(empty.E(), is(0));
 
         empty.addEdge(0, 1);
-        assertThat(empty.V(), is(EMPTY_VERTEX_NUMBER));
+        assertThat(empty.V(), is(TestData.EMPTY_VERTEX_NUMBER));
         assertThat(empty.E(), is(1));
 
         empty.addEdge(1, 2);
-        assertThat(empty.V(), is(EMPTY_VERTEX_NUMBER));
+        assertThat(empty.V(), is(TestData.EMPTY_VERTEX_NUMBER));
         assertThat(empty.E(), is(2));
     }
 
     @Test
-    public void adj() {
-        for (int v = 0; v < graph.V(); v++) {
-            for (int w : graph.adj(v)) {
+    public void adjWithTiny() {
+        for (int v = 0; v < tiny.V(); v++) {
+            for (int w : tiny.adj(v)) {
                 assertThat(TestData.tiny.get(v), hasItem(w));
+            }
+        }
+    }
+
+    @Test
+    public void adjWithMedium() {
+        for (int v = 0; v < medium.V(); v++) {
+            for (int w : medium.adj(v)) {
+                assertThat(TestData.medium.get(v), hasItem(w));
             }
         }
     }
@@ -71,6 +85,6 @@ public class TestGraph {
                 "10: 9 \n" +
                 "11: 9 12 \n" +
                 "12: 11 9 \n";
-        assertThat(sb, is(graph.toString()));
+        assertThat(sb, is(tiny.toString()));
     }
 }
