@@ -33,6 +33,6 @@ public class Graphs {
                 }
             }
         }
-        return n;
+        return n / 2;
     }
 }
