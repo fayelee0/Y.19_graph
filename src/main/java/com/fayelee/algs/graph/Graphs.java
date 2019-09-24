@@ -9,5 +9,30 @@ public class Graphs {
         return degree;
     }
 
+    public static int maxDegree(Graph G) {
+        int max = 0;
+        for (int v = 0; v < G.V(); v++) {
+            int cur = degree(G, v);
+            if (cur > max) {
+                max = cur;
+            }
+        }
+        return max;
+    }
 
+    public static int averageDegree(Graph G) {
+        return (int) 2.0 * G.E() / G.V();
+    }
+
+    public static int numberOfSelfLoops(Graph G) {
+        int n = 0;
+        for (int v = 0; v < G.V(); v++) {
+            for (int w : G.adj(v)) {
+                if (w == v) {
+                    n++;
+                }
+            }
+        }
+        return n;
+    }
 }
