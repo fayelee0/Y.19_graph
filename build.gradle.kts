@@ -3,18 +3,20 @@ plugins {
 }
 
 group = "com.fayelee.algs"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 repositories {
     jcenter()
 }
 
 dependencies {
-    compile("edu.princeton.cs", "algs", "1.0.4")
+    compile("edu.princeton.cs", "algs4", "1.0.4")
 
-    testCompile("junit", "junit", "4.12")
+    testCompile("org.hamcrest:hamcrest:2.1")
+    testCompile("org.hamcrest:hamcrest-library:2.1")
+    testCompile("junit:junit:4.12")
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_11
 }
